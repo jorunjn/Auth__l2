@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Log in</title>
+  <link rel="stylesheet" href="frontend.css" />
+</head>
+<body>
+  <header class="header">
+    <a href="./main.html" class="header__link">Sign up</a>
+  </header>
+
+  <main class="main">
+    <h1 class="main__title">Log in</h1>
+    <form class="form" id="login-form">
+      <input 
+        type="email" 
+        name="email" 
+        placeholder="Email" 
+        required 
+        class="form__input"
+      />
+      
+      <input 
+        type="password" 
+        name="password" 
+        placeholder="Password" 
+        required 
+        class="form__input"
+      />
+
+      <button type="submit" class="form__button">Log in</button>
+    </form>
+  </main>
+
+  <script>
+    const form = document.getElementById('login-form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = e.target.email.value.trim();
+      const password = e.target.password.value.trim();
+
+      const storedEmail = localStorage.getItem('userEmail');
+      const storedPassword = localStorage.getItem('userPassword');
+
+      if (storedEmail === email && storedPassword === password) {
+        // Если логин и пароль совпадают, переходим на develop.html
+        window.location.href = './develop.html';
+      } else {
+        alert('Неверно введен логин и/или пароль');
+      }
+    });
+  </script>
+</body>
+</html>
