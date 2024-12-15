@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About me</title>
+  <link rel="stylesheet" href="frontend.css" />
+</head>
+<body>
+  <header class="header">
+    <a href="./main.html" class="header__link" id="logout-button">Log out</a>
+  </header>
+  
+  <main class="main">
+    <h1 class="main__title">About me</h1>
+    <div class="info">
+      <p class="info__row"><strong>Email:</strong> <span id="user-email"></span></p>
+      <p class="info__row"><strong>Registration Date:</strong> <span id="reg-date"></span></p>
+      <p class="info__row"><strong>Nickname:</strong> <span id="user-nickname"></span></p>
+      <p class="info__row"><strong>Gender:</strong> <span id="user-gender"></span></p>
+    </div>
+  </main>
+
+  <script>
+    const email = localStorage.getItem('userEmail');
+    const regDate = localStorage.getItem('regDate');
+    const nickname = localStorage.getItem('userNickname');
+    const gender = localStorage.getItem('userGender');
+
+    document.getElementById('user-email').textContent = email || 'No data';
+    document.getElementById('reg-date').textContent = regDate || 'No data';
+    document.getElementById('user-nickname').textContent = nickname || 'No data';
+    document.getElementById('user-gender').textContent = gender || 'No data';
+
+    const logoutBtn = document.getElementById('logout-button');
+    logoutBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      // При логауте очищаем данные
+      localStorage.removeItem('userEmail');
+      localStorage.removeItem('userPassword');
+      localStorage.removeItem('regDate');
+      localStorage.removeItem('userNickname');
+      localStorage.removeItem('userGender');
+      window.location.href = './main.html';
+    });
+  </script>
+</body>
+</html>
