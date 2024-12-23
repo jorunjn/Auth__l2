@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign up (Main page)</title>
+  <link rel="stylesheet" href="frontend.css" />
+</head>
+<body>
+  <header class="header">
+    <a href="./backend.html" class="header__link">Log in</a>
+  </header>
+  
+  <main class="main">
+    <h1 class="main__title">Sign up</h1>
+    <form class="form" id="signup-form">
+      <input 
+        type="email" 
+        name="email" 
+        placeholder="Email" 
+        required 
+        class="form__input"
+      />
+      
+      <input 
+        type="password" 
+        name="password" 
+        placeholder="Password" 
+        required 
+        class="form__input"
+      />
+
+      <input 
+        type="password" 
+        name="password_confirm" 
+        placeholder="Confirm password" 
+        required 
+        class="form__input"
+      />
+
+      <input
+        type="text"
+        name="nickname"
+        placeholder="Nickname"
+        required
+        class="form__input"
+      />
+
+      <div class="form__radio-group">
+        <span>Ваш пол:</span>
+        <label>
+          <input type="radio" name="gender" value="Мужской" required> Мужской
+        </label>
+        <label>
+          <input type="radio" name="gender" value="Женский" required> Женский
+        </label>
+      </div>
+
+      <button type="submit" class="form__button">Sign up</button>
+    </form>
+  </main>
+
+  <script>
+    const form = document.getElementById('signup-form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = e.target.email.value.trim();
+      const password = e.target.password.value.trim();
+      const passwordConfirm = e.target.password_confirm.value.trim();
+      const nickname = e.target.nickname.value.trim();
+      const gender = e.target.gender.value;
+
+      if (password !== passwordConfirm) {
+        alert('Passwords do not match!');
+        return;
+      }
+
+      const regDate = new Date().toLocaleString('ru-RU');
+
+      // Сохраняем данные пользователя в localStorage
+      localStorage.setItem('userEmail', email);
+      localStorage.setItem('userPassword', password);
+      localStorage.setItem('regDate', regDate);
+      localStorage.setItem('userNickname', nickname);
+      localStorage.setItem('userGender', gender);
+      localStorage.setItem('userGender', gender);
+
+      alert('Registration successful! You can now log in.');
+      // Остаемся на этой же странице, пользователь может перейти на страницу логина по ссылке вверху.
+    });
+  </script>
+</body>
+</html>
